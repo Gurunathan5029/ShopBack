@@ -29,6 +29,9 @@ public class ProductPage extends PageObject {
     @FindBy(css = "div.sort-list div.cursor-pointer")
     WebElementFacade sortListIcon;
 
+    @FindBy(css = "a.page-button.active")
+    WebElementFacade pageBtn;
+
     @FindBy(css = "div.sort-list ul.dropdown-list-block li")
     List<WebElementFacade> sortTypesList;
 
@@ -93,5 +96,10 @@ public class ProductPage extends PageObject {
     public void moveToNextPage() {
         javaScriptUtility.scrollToTheElement(this.nextBtn);
         javaScriptUtility.clickOnTheElement(this.nextBtn);
+    }
+
+    public int returnPageDisplayed()
+    {
+        return Integer.parseInt(this.pageBtn.getText());
     }
 }

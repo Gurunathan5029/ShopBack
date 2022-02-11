@@ -66,11 +66,13 @@ public class FilterSortSteps {
     @Step
     public void verifyNextPageIsListedBasedOnAppliedFilterOrSort(Constants.OPERATION_TYPE operation) {
         productPage.moveToNextPage();
+        int page = (int)Serenity.getCurrentSession().get(StoryContextKeys.page);
         if (operation.equals(Constants.OPERATION_TYPE.FILTER))
             verifyProductListingByFilter();
         else if (operation.equals(Constants.OPERATION_TYPE.SORT))
             //This can be improved by validating the sort order based on previous page list
             verifyItemsAreSortedBasedOnPrice();
+        Assert.assertEquals("Verify page display",page+1,productPage.returnPageDisplayed());
     }
 
 

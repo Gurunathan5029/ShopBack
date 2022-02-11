@@ -17,6 +17,8 @@ public class SearchSteps {
         com.shop.model.Product prod = new Product(category,subCategory,Product);
         Serenity.getCurrentSession().put(StoryContextKeys.product,prod);
         homePage.selectProduct(category,subCategory,Product);
+        //Store active page number for future validation
+        Serenity.getCurrentSession().put(StoryContextKeys.page,productPage.returnPageDisplayed());
     }
 
     @Step
